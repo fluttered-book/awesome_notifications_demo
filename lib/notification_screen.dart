@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 
@@ -10,10 +12,11 @@ class NotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Received notification")),
-      body: Column(
+      body: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 16),
         children: [
           const Text("Received action:"),
-          Text(receivedAction.toMap().toString()),
+          Text(JsonEncoder.withIndent("  ").convert(receivedAction.toMap())),
         ],
       ),
     );
